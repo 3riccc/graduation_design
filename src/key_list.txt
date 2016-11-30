@@ -13,6 +13,7 @@ else
 end
 path
 and
+or
 count
 concat
 information_schema.tables
@@ -96,3 +97,11 @@ page
 flag
 media
 load_file
+mysql.user
+mysql.db
+distinct
+priv
+--
+#
+information_schema.schemata
+root
