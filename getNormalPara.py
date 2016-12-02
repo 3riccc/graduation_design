@@ -8,7 +8,7 @@ import urllib
 # 判断类型
 import types
 # 打开文件
-f = open('src/ff_12010007.html')
+f = open('src/ff_12011805.html')
 # 链接们
 links = []
 # 正则
