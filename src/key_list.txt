@@ -22,8 +22,6 @@ by
 elt
 floor
 rand
-x
-a
 chr
 rfrom
 numeric
