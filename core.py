@@ -9,6 +9,9 @@ from sklearn.cross_validation import train_test_split
 from sklearn import svm
 # knn
 from sklearn.neighbors import KNeighborsClassifier
+# naive bayse
+from sklearn.naive_bayes import MultinomialNB
+
 # 交叉验证
 from sklearn.cross_validation import cross_val_score
 
@@ -38,6 +41,8 @@ requires = []
 for req in norm_list:
     requires.append(wp.changePayload(req))
 
+print payloads[104]
+print pl_list[104]
 
 
 # -------------------处理后的文本转化为向量-------------------
@@ -55,8 +60,7 @@ payloads_vec = np.array(payloads_vec)
 requires_vec = np.array(requires_vec)
 
 
-
-# ---------------------生成X和Y用于训练------------------------
+# ---------------------生成X和Y用于训练或测试------------------------
 # 生成X
 X = np.concatenate((payloads_vec,requires_vec))
 # 生成Y
@@ -70,17 +74,46 @@ for i in range(0,len(requires_vec)):
 
 # ----------------------包括svm的交叉验证----------------------------
 
-# 设置算法
-clf = svm.SVC()
+# # 设置算法
+# clf = svm.SVC(kernel='sigmoid')
 
-# 用测试集预测 
+# # 用测试集预测 
+# scores = cross_val_score(clf, X,Y, cv=10, scoring='accuracy')
+# print scores
+# print scores.mean()
+
+
+
+
+# ------------------------用KNN试试-------------------------------
+# knn = KNeighborsClassifier(n_neighbors=4)
+# # # 训练
+# # knn.fit(X_train,Y_train)
+# scores = cross_val_score(knn, X,Y, cv=10, scoring='accuracy') # for classification
+# print scores
+# print scores.mean()
+# k_range = range(1, 10)
+# k_scores = []
+# for k in k_range:
+#     knn = KNeighborsClassifier(n_neighbors=k)
+# ##    loss = -cross_val_score(knn, X, y, cv=10, scoring='mean_squared_error') # for regression
+#     scores = cross_val_score(knn, X,Y, cv=10, scoring='accuracy') # for classification
+#     k_scores.append(scores.mean())
+# print k_scores
+
+
+# ------------------------用朴素贝叶斯试试------------------------
+clf = MultinomialNB()
 scores = cross_val_score(clf, X,Y, cv=10, scoring='accuracy')
 print scores
 print scores.mean()
 
-# ----------------------训练SVM并看看哪个分错了----------------------
+
+
+
+# ----------------------看看哪个分错了----------------------
 # # 设置算法
-# clf = svm.SVC(gamma=0.001)
+# clf = MultinomialNB()
 # # 训练
 # clf.fit(X,Y)
 # # 查看分类错了的样本
