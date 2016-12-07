@@ -43,6 +43,8 @@ def changePayload(payload):
 	#     else:
 	#         continue
 
+
+	# 是否是关键字
 	for word in key_list:
 		while word in payload:
 			start = payload.find(word)
@@ -69,7 +71,7 @@ def changePayload(payload):
     #特殊字符转化
 	for i in payload:
 		ascii = ord(i)
-		if(ascii<48 or ascii>57 and ascii<65 or ascii>90 and ascii < 95 or ascii>95 and ascii<97 or ascii>122):
+		if(ascii<48 and ascii != 32 or ascii>57 and ascii<65 or ascii>90 and ascii < 95 or ascii>95 and ascii<97 or ascii>122):
 			# if(('ascii'+ str(ascii)) not in p_list):
 			p_list.append('ascii'+str(ascii))
 			if(i != " "):
@@ -97,7 +99,7 @@ def wordToVec(vecList,doc):
     for word in doc:
         # 如果
         if(word in vecList):
-            returnVec[vecList.index(word)] += 1
+            returnVec[vecList.index(word)] = 1
         else:
             print("word is not contained:  " + word)
     return returnVec
